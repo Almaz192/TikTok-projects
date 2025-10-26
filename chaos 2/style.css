@@ -1,0 +1,131 @@
+/* Базовые стили */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Comic Neue', cursive;
+    /* Убираем overflow: hidden, чтобы страница могла скроллиться */
+    background: linear-gradient(135deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    background-size: 1000% 1000%;
+    animation: rainbow-bg-scroll 8s linear infinite;
+    /* Добавляем отступ сверху, чтобы контент не залезал под бегущую строку */
+    padding-top: 80px; 
+    padding-bottom: 50px;
+}
+body::before {
+    content: "";
+    position: fixed; /* Фон с линиями теперь фиксированный */
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.1) 20px, transparent 20px, transparent 40px);
+    animation: bg-lines-scroll 1s linear infinite;
+    z-index: -1;
+}
+
+/* Бегущая строка остается сверху */
+.marquee {
+    position: fixed; top: 0; left: 0; width: 100%;
+    background: black; color: white; font-size: 2rem;
+    padding: 10px 0; white-space: nowrap; overflow: hidden;
+    z-index: 1000;
+}
+.marquee p { display: inline-block; padding-left: 100%; animation: marquee-scroll 15s linear infinite; }
+
+/* Основной контейнер с фото и заголовком */
+.container {
+    text-align: center;
+    /* Убираем position: absolute, возвращаем в поток */
+    padding: 20px;
+    margin-bottom: 50px;
+    animation: container-float 10s ease-in-out infinite; /* Оставляем легкое покачивание */
+}
+.profile-photo {
+    width: 150px; height: 150px; border-radius: 50%;
+    border: 8px ridge #ff00c8; margin-bottom: 20px;
+    animation: violent-shake 0.3s linear infinite;
+}
+.title { font-size: 5rem; color: white; text-transform: uppercase; display: inline-block; }
+.char { display: inline-block; animation: text-jump 1s ease-in-out infinite alternate, text-spin 5s linear infinite, text-rainbow-glow 2s linear infinite; }
+.char:nth-child(2n) { animation-delay: -0.2s; } .char:nth-child(3n) { animation-delay: -0.5s; } .char:nth-child(4n) { animation-delay: -0.8s; } .char:nth-child(5n) { animation-delay: -1s; }
+.subtitle { font-size: 2rem; margin-top: 1rem; color: yellow; animation: subtitle-flicker 0.5s linear infinite; }
+.cta-button { margin-top: 1rem; padding: 15px 30px; font-size: 1.5rem; font-family: 'Comic Neue', cursive; font-weight: 700; color: white; background: #00ff0d; border: 5px solid black; cursor: pointer; animation: button-morph 2s ease-in-out infinite alternate; }
+
+/* === ИСПРАВЛЕННЫЙ КОНТЕЙНЕР ДЛЯ СЕКЦИЙ === */
+/* Убираем .chaos-container, теперь все секции идут друг за другом */
+.flying-box {
+    /* УБИРАЕМ POSITION: ABSOLUTE! */
+    background: rgba(255, 255, 255, 0.3);
+    border: 5px solid black;
+    backdrop-filter: blur(5px);
+    padding: 20px;
+    border-radius: 15px;
+    width: 80%; /* Делаем шире */
+    max-width: 600px; /* Ограничиваем максимальную ширину */
+    margin: 50px auto; /* Центрируем и добавляем отступы между блоками */
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+
+    /* ЗАМЕНЯЕМ АНИМАЦИЮ ПОЛЕТА НА ЛОКАЛЬНЫЙ ХАОС */
+    animation: contained-chaos 5s ease-in-out infinite alternate;
+}
+
+/* Добавляем асинхронности в хаос, чтобы блоки двигались по-разному */
+.flying-box.skills { animation-duration: 4s; }
+.flying-box.projects { animation-duration: 6s; }
+
+
+.flying-box h3 { font-size: 2rem; text-align: center; animation: text-rainbow-glow 2s linear infinite; }
+.buzz-text { font-size: 1.1rem; animation: text-buzz 0.1s linear infinite; }
+
+.icons { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 1rem; }
+.icon-wrapper { animation: icon-hop 0.8s ease-in-out infinite alternate; }
+.icon-wrapper:nth-child(2) { animation-delay: -0.3s; }
+.icon-wrapper:nth-child(3) { animation-delay: -0.6s; }
+.icon { width: 50px; height: 50px; animation: icon-spin-crazy 3s linear infinite, icon-color-change 4s linear infinite; }
+
+.project-cards { display: flex; flex-direction: column; gap: 10px; margin-top: 1rem; }
+.card {
+    background: rgba(0,0,0,0.5); color: white; padding: 10px; border-radius: 5px;
+    animation: card-squash 2s ease-in-out infinite alternate;
+}
+.card:nth-child(2) { animation-delay: -0.5s; }
+.card:nth-child(3) { animation-delay: -1s; }
+
+/* === НАБОР АНИМАЦИЙ (убрали полеты, добавили локальный хаос) === */
+
+/* НОВАЯ АНИМАЦИЯ для блоков, чтобы они крутились на месте */
+@keyframes contained-chaos {
+    from {
+        transform: rotate(-3deg) skew(2deg) scale(1.02);
+    }
+    to {
+        transform: rotate(3deg) skew(-2deg) scale(1);
+    }
+}
+@keyframes container-float {
+    0% { transform: translate(0, 0) rotate(1deg); }
+    50% { transform: translate(0, -10px) rotate(-1deg); }
+    100% { transform: translate(0, 0) rotate(1deg); }
+}
+
+/* Анимации элементов */
+@keyframes text-buzz {
+    from { transform: translateX(-1px) translateY(1px); } to { transform: translateX(1px) translateY(-1px); }
+}
+@keyframes card-squash {
+    from { transform: scale(1, 1) rotate(-1deg); } to { transform: scale(1.05, 0.95) rotate(1deg); }
+}
+@keyframes bg-lines-scroll {
+    from { background-position: 0 0; } to { background-position: 40px 40px; }
+}
+
+/* ... (все старые анимации элементов остаются на месте) ... */
+@keyframes rainbow-bg-scroll { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+@keyframes text-jump { from { transform: translateY(0); } to { transform: translateY(-20px) scale(1.2); } }
+@keyframes text-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes text-rainbow-glow { 0% { text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; } 15% { text-shadow: 0 0 10px #ff7300, 0 0 20px #ff7300; } 30% { text-shadow: 0 0 10px #fffb00, 0 0 20px #fffb00; } 45% { text-shadow: 0 0 10px #48ff00, 0 0 20px #48ff00; } 60% { text-shadow: 0 0 10px #00ffd5, 0 0 20px #00ffd5; } 75% { text-shadow: 0 0 10px #002bff, 0 0 20px #002bff; } 90% { text-shadow: 0 0 10px #7a00ff, 0 0 20px #7a00ff; } 100% { text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; } }
+@keyframes icon-hop { from { transform: translateY(0) rotate(0deg); } to { transform: translateY(-30px) rotate(20deg); } }
+@keyframes icon-spin-crazy { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.5) skew(20deg); } 100% { transform: rotate(360deg) scale(1); } }
+@keyframes icon-color-change { 0% { fill: #ff5252; } 25% { fill: #ffbc52; } 50% { fill: #42ff52; } 75% { fill: #5271ff; } 100% { fill: #ff5252; } }
+@keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+@keyframes violent-shake { 0% { transform: translate(0, 0) rotate(0deg); } 25% { transform: translate(5px, 5px) rotate(5deg); } 50% { transform: translate(0, 0) rotate(0eg); } 75% { transform: translate(-5px, 5px) rotate(-5deg); } 100% { transform: translate(0, 0) rotate(0deg); } }
+@keyframes subtitle-flicker { 0% { transform: scale(1); opacity: 1; color: yellow; } 50% { transform: scale(1.1); opacity: 0.7; color: cyan; } 100% { transform: scale(1); opacity: 1; color: yellow; } }
+@keyframes button-morph { 0% { border-radius: 5px; background: #00ff0d; transform: scale(1) skew(0deg); } 50% { border-radius: 50%; background: #ff00c8; transform: scale(1.2) skew(10deg); } 100% { border-radius: 5px; background: #00ff0d; transform: scale(1) skew(0deg); } }
