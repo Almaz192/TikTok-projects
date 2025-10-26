@@ -1,0 +1,246 @@
+body {
+  background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet);
+  background-size: 800% 800%;
+  animation: bgShift 4s infinite linear;
+  font-family: 'Comic Sans MS', cursive;
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+@keyframes bgShift {
+  0% { background-position: 0 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* FRONTEND DEVELOPER — теперь трясётся и крутится */
+.title {
+  font-size: 3.5rem;
+  margin-top: 1rem;
+  text-shadow: 0 0 30px white, 0 0 50px magenta, 0 0 70px cyan;
+  animation:
+    shake 0.2s infinite,
+    spinFast 4s infinite linear,
+    rainbowText 2s infinite linear,
+    pulse 1s infinite alternate;
+}
+
+/* “Let Him Cook” — теперь подпрыгивает и трясётся */
+h2 {
+  animation:
+    bounceFast 0.4s infinite alternate,
+    rainbowText 1.5s infinite linear,
+    rotateSlight 2s infinite alternate;
+}
+
+@keyframes spinFast {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(5px, -5px) rotate(2deg); }
+  50% { transform: translate(-5px, 5px) rotate(-2deg); }
+  75% { transform: translate(3px, 3px) rotate(1deg); }
+}
+
+@keyframes bounceFast {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-20px) rotate(5deg); }
+}
+
+@keyframes rotateSlight {
+  0% { transform: rotate(-5deg); }
+  100% { transform: rotate(5deg); }
+}
+
+@keyframes rainbowText {
+  0% { color: red; }
+  25% { color: orange; }
+  50% { color: lime; }
+  75% { color: cyan; }
+  100% { color: magenta; }
+}
+
+@keyframes pulse {
+  0%, 100% { text-shadow: 0 0 10px cyan; }
+  50% { text-shadow: 0 0 40px magenta; }
+}
+
+/* Фото теперь летает по кругу и вибрирует */
+.me {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 5px solid white;
+  animation:
+    spinFast 3s infinite linear,
+    hoverUpDown 1.5s infinite alternate,
+    hueRotate 2s infinite linear;
+  margin-top: 1rem;
+}
+
+@keyframes hoverUpDown {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-20px); }
+}
+
+@keyframes hueRotate {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* Subtitle теперь глючит и трясётся */
+.subtitle {
+  font-size: 1.2rem;
+  animation:
+    glitch 0.3s infinite,
+    spinSlight 5s infinite linear;
+}
+
+@keyframes glitch {
+  0% { text-shadow: 2px 2px magenta; transform: translate(1px, 0); }
+  25% { text-shadow: -2px 0 cyan; transform: translate(-2px, 2px); }
+  50% { text-shadow: 3px -2px lime; transform: translate(0, -1px); }
+  75% { text-shadow: -3px 2px red; transform: translate(2px, -2px); }
+  100% { text-shadow: 2px 2px yellow; transform: translate(0, 0); }
+}
+
+@keyframes spinSlight {
+  to { transform: rotate(360deg); }
+}
+
+/* ABOUT теперь крутится, пульсирует и трясётся */
+.about {
+  margin: 2rem auto;
+  padding: 1rem;
+  background: rgba(255,255,255,0.1);
+  border-radius: 1rem;
+  width: 80%;
+  animation:
+    spin 10s infinite linear,
+    pulse 2s infinite,
+    shake 0.3s infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.facts li {
+  margin: 0.5rem 0;
+  animation:
+    colorShift 1s infinite alternate,
+    bounceFast 1s infinite alternate;
+}
+
+@keyframes colorShift {
+  0% { color: cyan; }
+  100% { color: magenta; }
+}
+
+/* Skills — вращаются блоки, крутятся и прыгают */
+.icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.icon {
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  background: rgba(255,255,255,0.2);
+  box-shadow: 0 0 20px white;
+  animation:
+    chaos 1s infinite alternate,
+    spinSlight 5s infinite linear,
+    rainbowText 3s infinite linear;
+}
+
+@keyframes chaos {
+  0% { transform: rotate(0deg) scale(1); filter: hue-rotate(0deg); }
+  100% { transform: rotate(360deg) scale(1.5); filter: hue-rotate(360deg); }
+}
+
+/* Projects — прыгают и трясутся */
+.project {
+  margin: 1rem auto;
+  padding: 1rem;
+  width: 60%;
+  background: rgba(0,0,0,0.5);
+  border-radius: 1rem;
+  animation:
+    jump 0.8s infinite alternate,
+    rainbowText 2s infinite linear,
+    shake 0.3s infinite;
+}
+
+@keyframes jump {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-25px); }
+}
+
+/* Форма живёт */
+form {
+  background: rgba(255,255,255,0.15);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  width: 80%;
+  margin: 2rem auto;
+  animation:
+    spin 8s infinite linear,
+    pulse 3s infinite,
+    shake 0.4s infinite;
+}
+
+input, textarea {
+  width: 80%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border: 2px dashed white;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.4);
+  color: white;
+  font-size: 1rem;
+  animation:
+    glitch 0.3s infinite alternate,
+    colorShift 1s infinite alternate;
+}
+
+button {
+  background: magenta;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  animation:
+    bounceFast 0.5s infinite alternate,
+    rainbowText 1.5s infinite linear,
+    rotateSlight 2s infinite alternate;
+  cursor: pointer;
+}
+
+/* Всё вокруг летает */
+.floating {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.9;
+  animation: float 6s infinite linear;
+}
+
+@keyframes float {
+  0% { top: 110%; transform: rotate(0deg) scale(1); left: 10%; }
+  25% { top: 50%; left: 80%; transform: rotate(180deg) scale(1.2); }
+  50% { top: 10%; left: 40%; transform: rotate(360deg) scale(1.5); }
+  75% { top: 60%; left: 0%; transform: rotate(540deg) scale(1.3); }
+  100% { top: 110%; left: 10%; transform: rotate(720deg) scale(1); }
+}
+
+footer {
+  margin-top: 3rem;
+  font-size: 1rem;
+  animation:
+    rainbowText 2s infinite linear,
+    spinSlight 10s infinite linear;
+}
